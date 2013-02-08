@@ -3,9 +3,9 @@ Prerequisites
 
 * All your Grails versions must be installed under the same base directory. Ex:
 
-        /opt/grails-1.0.3
-        /opt/grails-1.1.1
-        /opt/grails-2.1.0.RC1
+        /opt/grails/1.0.3
+        /opt/grails/1.1.1
+        /opt/grails/2.1.0.RC1
 
 * `GRAILS_HOME` environment variable must be set and point to your "default" Grails installation
 * cURL and unzip (If you want it to automatically pull missing versions)
@@ -14,7 +14,7 @@ Prerequisites
 Installation
 ------------
 
-* Download the script: http://github.com/deluan/grails.sh/raw/master/grails
+* Download the script: http://github.com/jdbeutel/grails.sh/raw/master/grails
 * Include the folder where it is installed in your `PATH`. 
 * Exclude `$GRAILS_HOME/bin` from your `PATH`
 
