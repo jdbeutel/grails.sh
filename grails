@@ -22,8 +22,16 @@ DOWNLOAD_BASE_URL="http://dist.springframework.org.s3.amazonaws.com/release/GRAI
 
 # Try to get the version from the command line
 TRY_VERSION=$1
-if [[ $TRY_VERSION =~ [0-9]\.[0-9]\.[0-9] ]]; then
+if [[ $TRY_VERSION =~ [0-9]\.[0-9]\.[0-9]$ ]]; then
 	VERSION=$TRY_VERSION
+	shift
+fi 
+
+# Try to get release candidate version from the command line
+TRY_VERSION=$1
+if [[ $TRY_VERSION =~ [0-9]\.[0-9]\.[0-9](\.RC[0-9])? ]]; then
+	VERSION=$TRY_VERSION
+    DOWNLOAD_BASE_URL="http://dist.springframework.org.s3.amazonaws.com/milestone/GRAILS"
 	shift
 fi 
 
