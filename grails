@@ -28,7 +28,7 @@ if [[ $TRY_VERSION =~ [0-9]\.[0-9]\.[0-9]$ ]]; then
 fi 
 
 # Try to get release candidate version from the command line
-if [[ $TRY_VERSION =~ [0-9]\.[0-9]\.[0-9](\.RC[0-9])? ]]; then
+if [[ $TRY_VERSION =~ [0-9]\.[0-9]\.[0-9]\.RC[0-9] ]]; then
 	VERSION=$TRY_VERSION
 	DOWNLOAD_BASE_URL="http://dist.springframework.org.s3.amazonaws.com/milestone/GRAILS"
 	shift
