@@ -18,7 +18,7 @@ dirname()
 DEFAULT_VERSION=`basename $GRAILS_HOME`
 BASE_GRAILS_PATH=`dirname $GRAILS_HOME`
 APP_PROP="application.properties"
-DOWNLOAD_BASE_URL="http://dist.springframework.org.s3.amazonaws.com/release/GRAILS"
+DOWNLOAD_BASE_URL="https://github.com/grails/grails-core/releases/download"
 
 # Try to get the version from the command line
 TRY_VERSION=$1
@@ -30,7 +30,6 @@ fi
 # Try to get release candidate version from the command line
 if [[ $TRY_VERSION =~ [0-9]\.[0-9]\.[0-9]+\.RC[0-9] ]]; then
 	VERSION=$TRY_VERSION
-	DOWNLOAD_BASE_URL="http://dist.springframework.org.s3.amazonaws.com/milestone/GRAILS"
 	shift
 fi 
 
@@ -47,8 +46,10 @@ export GRAILS_HOME=${BASE_GRAILS_PATH}/${VERSION}
 # Attempt to download and unzip the specified version if it does not exist
 if [ ! -d ${GRAILS_HOME} ]; then
         NEW_GRAILS_FILE=grails-${VERSION}
+        URL="${DOWNLOAD_BASE_URL}/v${VERSION}/${NEW_GRAILS_FILE}.zip"
         echo "grails ${VERSION} does not exist, attempting to download..."
-        curl "${DOWNLOAD_BASE_URL}/${NEW_GRAILS_FILE}.zip" -o ${NEW_GRAILS_FILE}.zip
+        echo "$URL"
+        curl -L "$URL" -o ${NEW_GRAILS_FILE}.zip
         unzip ./${NEW_GRAILS_FILE}.zip -d ${BASE_GRAILS_PATH}/
         rm ${NEW_GRAILS_FILE}.zip
         mv ${BASE_GRAILS_PATH}/${NEW_GRAILS_FILE} ${BASE_GRAILS_PATH}/${VERSION}
